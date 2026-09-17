@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Schemes & Benefits | CLAIMIT (నా హక్కు)</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-badge">C</div>
+        <div class="logo-text">
+          <h1 data-i18n="brand_name">CLAIMIT</h1>
+          <span class="identity-telugu" data-i18n="brand_telugu_identity">నా హక్కు (Naa Hakku)</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+          <li><a href="profile.html" data-i18n="nav_find_benefits">Find Benefits</a></li>
+          <li><a href="schemes.html" class="active" data-i18n="nav_schemes">Schemes</a></li>
+          <li><a href="dashboard.html" data-i18n="nav_dashboard">Dashboard</a></li>
+          <li><a href="applications.html" data-i18n="nav_applications">My Applications</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="lang-toggle">
+          <button class="lang-btn active" data-lang="en">English</button>
+          <button class="lang-btn" data-lang="te">తెలుగు</button>
+        </div>
+        <button class="btn btn-demo btn-sm" data-action="try-demo">⚡ Try Demo</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <!-- Personalized Evaluation Banner -->
+      <div id="results-banner" style="background:var(--primary-50); border:1px solid var(--primary-200); border-radius:var(--radius-lg); padding:24px; margin-bottom:32px; display:none; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+        <div>
+          <h3 id="banner-title" style="font-size:22px; font-weight:800; color:var(--primary-900); margin-bottom:4px;" data-i18n="results_header">
+            🎉 We found benefits that may match your profile.
+          </h3>
+          <p id="banner-sub" style="font-size:14px; color:var(--text-muted);" data-i18n="results_sub">
+            Potential benefits identified based on the information provided in your profile.
+          </p>
+        </div>
+        <div style="display:flex; gap:12px; align-items:center;">
+          <span id="banner-count" style="font-size:14px; font-weight:700; background:#ffffff; padding:6px 14px; border-radius:var(--radius-full); border:1px solid var(--primary-200); color:var(--primary-700);">
+            Loading...
+          </span>
+          <a href="profile.html" class="btn btn-secondary btn-sm">Edit Profile</a>
+        </div>
+      </div>
+
+      <!-- Schemes Filter & Controls Bar -->
+      <div class="schemes-filter-bar">
+        <div class="filter-group">
+          <input type="text" id="search-input" class="filter-input" placeholder="Search by scheme name or keyword..." style="min-width:240px;">
+          
+          <select id="category-filter" class="filter-select">
+            <option value="ALL" data-i18n="filter_all_categories">All Categories</option>
+            <option value="Education">Education</option>
+            <option value="Agriculture">Agriculture</option>
+            <option value="Skill Development">Skill Development</option>
+            <option value="Entrepreneurship">Entrepreneurship</option>
+            <option value="Social Security">Social Security</option>
+          </select>
+
+          <select id="match-filter" class="filter-select">
+            <option value="ALL">All Matches</option>
+            <option value="STRONG">Strong Match (80%+)</option>
+            <option value="POTENTIAL">Potentially Eligible (60%+)</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label style="font-size:13px; color:var(--text-dim); font-weight:600;">Sort By:</label>
+          <select id="sort-select" class="filter-select">
+            <option value="MATCH" data-i18n="filter_sort_best_match">Best Match %</option>
+            <option value="DEADLINE" data-i18n="filter_sort_deadline">Approaching Deadline</option>
+            <option value="AMOUNT" data-i18n="filter_sort_amount">Highest Benefit Amount</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Schemes Grid Container -->
+      <div id="schemes-grid" class="schemes-grid">
+        <!-- Rendered dynamically by js/schemes.js -->
+        <div style="grid-column: 1 / -1; text-align:center; padding:48px;">
+          <p style="font-size:16px; color:var(--text-dim);">Evaluating benefits against active guidelines...</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container text-center">
+      <div class="footer-copy">
+        CLAIMIT (నా హక్కు) - Know what you deserve. Claim what you're eligible for.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/translations.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/schemes.js"></script>
+  <script src="js/ai-assistant.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+# Maven & Java build outputs
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# IDE and Editor files
+.classpath
+.project
+.settings/
+.vscode/
+.idea/
+*.iml
+
+# Log files
+*.log
+logs/
+
+# Environment and Secrets
+.env
+application-local.properties
+*.secret
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# Node.js artifacts for dev-server
+node_modules/
+dist/

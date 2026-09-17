@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beneficiary Dashboard | CLAIMIT (నా హక్కు)</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-badge">C</div>
+        <div class="logo-text">
+          <h1 data-i18n="brand_name">CLAIMIT</h1>
+          <span class="identity-telugu" data-i18n="brand_telugu_identity">నా హక్కు (Naa Hakku)</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+          <li><a href="profile.html" data-i18n="nav_find_benefits">Find Benefits</a></li>
+          <li><a href="schemes.html" data-i18n="nav_schemes">Schemes</a></li>
+          <li><a href="dashboard.html" class="active" data-i18n="nav_dashboard">Dashboard</a></li>
+          <li><a href="applications.html" data-i18n="nav_applications">My Applications</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="lang-toggle">
+          <button class="lang-btn active" data-lang="en">English</button>
+          <button class="lang-btn" data-lang="te">తెలుగు</button>
+        </div>
+        <button class="btn btn-demo btn-sm" data-action="try-demo">⚡ Try Demo</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <!-- Dashboard Header Banner -->
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-bottom:32px;">
+        <div>
+          <h2 style="font-size:28px; font-weight:800; color:var(--primary-900);">
+            Welcome back, <span id="dash-user-name">Citizen</span> 👋
+          </h2>
+          <p style="font-size:15px; color:var(--text-muted); margin-top:4px;">
+            Here is your live benefits discovery and application readiness overview.
+          </p>
+        </div>
+
+        <div style="display:flex; gap:12px;">
+          <a href="profile.html" class="btn btn-secondary">Edit Profile</a>
+          <a href="schemes.html" class="btn btn-primary">Find More Schemes &rarr;</a>
+        </div>
+      </div>
+
+      <!-- 4 Key Stat Metrics -->
+      <div class="dash-metric-grid">
+        <div class="dash-card">
+          <div class="card-title">Potential Benefits</div>
+          <div id="metric-benefits-count" class="card-num" style="color:var(--primary-600);">8</div>
+          <span style="font-size:12px; color:var(--text-dim);">Schemes matching your criteria</span>
+        </div>
+
+        <div class="dash-card">
+          <div class="card-title">Strong Matches (80%+)</div>
+          <div id="metric-strong-matches" class="card-num" style="color:#047857;">4</div>
+          <span style="font-size:12px; color:var(--text-dim);">High eligibility probability</span>
+        </div>
+
+        <div class="dash-card">
+          <div class="card-title">Est. Total Grant Value</div>
+          <div id="metric-total-value" class="card-num" style="color:#b45309;">₹75,000+</div>
+          <span style="font-size:12px; color:var(--text-dim);">Tuition & maintenance support</span>
+        </div>
+
+        <div class="dash-card">
+          <div class="card-title">Applications In Progress</div>
+          <div id="metric-apps-count" class="card-num" style="color:var(--accent-purple);">3</div>
+          <span style="font-size:12px; color:var(--text-dim);">Currently tracked in portal</span>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1.15fr 0.85fr; gap:32px;">
+        <!-- Left: Top Matched Schemes -->
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+            <h3 style="font-size:18px; font-weight:700; color:var(--primary-900);">🎯 Top Matched Benefits For You</h3>
+            <a href="schemes.html" style="font-size:13px; font-weight:600;">View All &rarr;</a>
+          </div>
+
+          <div id="dash-top-matches" style="display:flex; flex-direction:column; gap:16px;">
+            <!-- Rendered by js/dashboard.js -->
+          </div>
+        </div>
+
+        <!-- Right: Upcoming Deadlines & Notifications -->
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+            <h3 style="font-size:18px; font-weight:700; color:var(--primary-900);">⏰ Upcoming Deadlines & Alerts</h3>
+            <span style="font-size:12px; font-weight:700; color:#b45309; background:#fffbeb; padding:4px 8px; border-radius:9999px;">Action Required</span>
+          </div>
+
+          <div id="dash-notifications" style="display:flex; flex-direction:column; gap:14px;">
+            <!-- Rendered by js/dashboard.js -->
+          </div>
+
+          <!-- Document Readiness Mini Card -->
+          <div class="card" style="margin-top:24px; background:#ffffff;">
+            <h4 style="font-size:15px; font-weight:700; color:var(--primary-900); margin-bottom:8px;">
+              📋 Application Document Readiness
+            </h4>
+            <p style="font-size:13px; color:var(--text-muted); margin-bottom:12px;">
+              Keep common certificates scanned in PDF under 100KB to apply in under 5 minutes.
+            </p>
+            <div style="font-size:13px; display:flex; flex-direction:column; gap:8px;">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span style="color:#059669; font-weight:bold;">✓</span> Aadhaar Card (Linked to Mobile)
+              </div>
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span style="color:#059669; font-weight:bold;">✓</span> MeeSeva Income Certificate (&lt; ₹2.5L)
+              </div>
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span style="color:#059669; font-weight:bold;">✓</span> Active Bank Passbook (NPCI Mapped)
+              </div>
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span style="color:#059669; font-weight:bold;">✓</span> College Bonafide / Study Certificate
+              </div>
+            </div>
+            <a href="profile.html" class="btn btn-outline btn-sm" style="margin-top:16px; width:100%;">
+              Update My Verified Profile &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container text-center">
+      <div class="footer-copy">
+        CLAIMIT (నా హక్కు) - Rule-Based Government Benefits Discovery Platform.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/translations.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/ai-assistant.js"></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Applications | CLAIMIT (నా హక్కు)</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-badge">C</div>
+        <div class="logo-text">
+          <h1 data-i18n="brand_name">CLAIMIT</h1>
+          <span class="identity-telugu" data-i18n="brand_telugu_identity">నా హక్కు (Naa Hakku)</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+          <li><a href="profile.html" data-i18n="nav_find_benefits">Find Benefits</a></li>
+          <li><a href="schemes.html" data-i18n="nav_schemes">Schemes</a></li>
+          <li><a href="dashboard.html" data-i18n="nav_dashboard">Dashboard</a></li>
+          <li><a href="applications.html" class="active" data-i18n="nav_applications">My Applications</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="lang-toggle">
+          <button class="lang-btn active" data-lang="en">English</button>
+          <button class="lang-btn" data-lang="te">తెలుగు</button>
+        </div>
+        <button class="btn btn-demo btn-sm" data-action="try-demo">⚡ Try Demo</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-bottom:28px;">
+        <div>
+          <h2 style="font-size:28px; font-weight:800; color:var(--primary-900);">
+            My Tracked Applications
+          </h2>
+          <p style="font-size:15px; color:var(--text-muted); margin-top:4px;">
+            Monitor your application milestones from discovery to submission and disbursement.
+          </p>
+        </div>
+
+        <a href="schemes.html" class="btn btn-primary">+ Discover More Benefits</a>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div style="display:flex; gap:10px; margin-bottom:24px; flex-wrap:wrap;">
+        <button class="btn btn-sm btn-secondary filter-tab active" data-status="ALL">All Applications</button>
+        <button class="btn btn-sm btn-secondary filter-tab" data-status="Application Started">In Progress</button>
+        <button class="btn btn-sm btn-secondary filter-tab" data-status="Submitted">Submitted</button>
+        <button class="btn btn-sm btn-secondary filter-tab" data-status="Interested">Saved / Interested</button>
+      </div>
+
+      <!-- Applications Table / Cards -->
+      <div id="applications-list" style="display:flex; flex-direction:column; gap:16px;">
+        <!-- Rendered by js/applications.js -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container text-center">
+      <div class="footer-copy">
+        CLAIMIT (నా హక్కు) - Rule-Based Government Benefits Discovery Platform.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/translations.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/applications.js"></script>
+  <script src="js/ai-assistant.js"></script>
+</body>
+</html>

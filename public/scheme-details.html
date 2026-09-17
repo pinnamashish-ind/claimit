@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scheme Details & Readiness | CLAIMIT (నా హక్కు)</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-badge">C</div>
+        <div class="logo-text">
+          <h1 data-i18n="brand_name">CLAIMIT</h1>
+          <span class="identity-telugu" data-i18n="brand_telugu_identity">నా హక్కు (Naa Hakku)</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+          <li><a href="profile.html" data-i18n="nav_find_benefits">Find Benefits</a></li>
+          <li><a href="schemes.html" class="active" data-i18n="nav_schemes">Schemes</a></li>
+          <li><a href="dashboard.html" data-i18n="nav_dashboard">Dashboard</a></li>
+          <li><a href="applications.html" data-i18n="nav_applications">My Applications</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="lang-toggle">
+          <button class="lang-btn active" data-lang="en">English</button>
+          <button class="lang-btn" data-lang="te">తెలుగు</button>
+        </div>
+        <button class="btn btn-demo btn-sm" data-action="try-demo">⚡ Try Demo</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container" style="max-width:1080px;">
+      <!-- Breadcrumb -->
+      <div style="margin-bottom:20px; font-size:14px; color:var(--text-dim);">
+        <a href="schemes.html">&larr; Back to All Schemes</a> / <span id="bc-title">Loading...</span>
+      </div>
+
+      <!-- Scheme Header Card -->
+      <div class="card" style="margin-bottom:32px;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px;">
+          <div>
+            <div style="display:flex; gap:10px; align-items:center; margin-bottom:8px;">
+              <span id="detail-category" class="category-tag">Education</span>
+              <span id="detail-match-badge" class="match-score-badge">Evaluating...</span>
+            </div>
+            <h2 id="detail-title" style="font-size:28px; font-weight:800; color:var(--primary-900); margin-bottom:6px;">
+              Scheme Title Loading...
+            </h2>
+            <p id="detail-telugu-title" style="font-size:16px; font-weight:600; color:var(--primary-600); margin-bottom:12px;"></p>
+            <p id="detail-desc" style="font-size:15px; color:var(--text-muted); max-width:800px;"></p>
+          </div>
+
+          <!-- Benefit & Deadline Widget -->
+          <div style="background:var(--primary-50); border:1px solid var(--primary-200); border-radius:var(--radius-md); padding:16px 20px; min-width:240px; text-align:right;">
+            <div style="font-size:12px; font-weight:700; color:var(--primary-700); text-transform:uppercase;">Benefit Value</div>
+            <div id="detail-benefit" style="font-size:22px; font-weight:800; color:#047857; margin-bottom:8px;">₹--</div>
+            
+            <div style="font-size:12px; font-weight:600; color:var(--text-dim);">Application Deadline</div>
+            <div id="detail-deadline" style="font-size:14px; font-weight:700; color:#b45309;">--</div>
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-top:24px; padding-top:20px; border-top:1px solid var(--border-color);">
+          <div style="display:flex; gap:12px; align-items:center;">
+            <select id="app-status-select" class="filter-select" style="font-weight:600;">
+              <option value="Interested">📌 Status: Interested</option>
+              <option value="Application Started">⚡ Status: Application Started</option>
+              <option value="Submitted">📤 Status: Submitted</option>
+              <option value="Approved">✅ Status: Approved</option>
+            </select>
+            <button id="btn-save-status" class="btn btn-secondary btn-sm">Update Tracking</button>
+          </div>
+
+          <div style="display:flex; gap:12px;">
+            <button id="btn-ask-scheme-ai" class="btn btn-outline">
+              🤖 Ask AI About This Scheme
+            </button>
+            <a id="detail-official-link" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              Apply on Official Website &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1.15fr 0.85fr; gap:32px;">
+        <!-- Left Column: Why You Qualify & Step Process -->
+        <div>
+          <!-- Why You May Qualify Card -->
+          <div class="card" style="margin-bottom:32px;">
+            <div class="card-title-row">
+              <span style="font-size:20px;">🎯</span>
+              <h3 data-i18n="section_why_qualify">WHY YOU MAY QUALIFY</h3>
+            </div>
+            <p style="font-size:14px; color:var(--text-muted); margin-bottom:16px;">
+              Our rule engine compared your profile parameters with the scheme's statutory requirements:
+            </p>
+
+            <div id="qualification-breakdowns" style="display:flex; flex-direction:column; gap:10px;">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- Step-by-Step Application Process -->
+          <div class="card">
+            <div class="card-title-row">
+              <span style="font-size:20px;">🚀</span>
+              <h3 data-i18n="section_steps">STEP-BY-STEP APPLICATION PROCESS</h3>
+            </div>
+            <p style="font-size:14px; color:var(--text-muted); margin-bottom:20px;">
+              Follow these official steps to complete your submission accurately:
+            </p>
+
+            <div id="steps-timeline" class="timeline">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Document Readiness Tracker & Trust Signals -->
+        <div>
+          <!-- Document Readiness Meter -->
+          <div class="readiness-meter">
+            <div class="meter-header">
+              <span class="meter-title" data-i18n="section_readiness">APPLICATION READINESS</span>
+              <span id="readiness-ratio" class="meter-score">0 / 0 Ready</span>
+            </div>
+            <div class="progress-track">
+              <div id="readiness-fill" class="progress-fill" style="width:0%;"></div>
+            </div>
+            <p id="readiness-tip" style="font-size:12px; color:var(--text-dim);" data-i18n="readiness_sub">
+              Click checkboxes below as you prepare each certificate.
+            </p>
+          </div>
+
+          <!-- Documents Checklist Card -->
+          <div class="card" style="margin-bottom:32px;">
+            <div class="card-title-row">
+              <span style="font-size:20px;">📋</span>
+              <h3 data-i18n="section_documents">DOCUMENTS REQUIRED</h3>
+            </div>
+            <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">
+              Ensure scanned copies are clear (PDF / JPEG under 100KB):
+            </p>
+
+            <div id="documents-checklist" class="checklist">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- Official Trust Indicators -->
+          <div class="card" style="background:var(--surface-subtle);">
+            <h4 style="font-size:14px; font-weight:700; color:var(--primary-900); margin-bottom:12px;">
+              🛡️ Official Verification & Source
+            </h4>
+            <div style="font-size:13px; display:flex; flex-direction:column; gap:8px;">
+              <div>
+                <strong data-i18n="trust_source">Information Source</strong>: 
+                <span id="trust-dept">Government Department</span>
+              </div>
+              <div>
+                <strong data-i18n="trust_verified">Last Verified</strong>: 
+                <span id="trust-verified-date">August 2026</span>
+              </div>
+              <div>
+                <strong data-i18n="trust_official">Official Portal</strong>: 
+                <span id="trust-portal-name">Official Govt Website</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container text-center">
+      <div class="footer-copy">
+        CLAIMIT (నా హక్కు) - Rule-Based Government Benefits Discovery Platform.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/translations.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/scheme-details.js"></script>
+  <script src="js/ai-assistant.js"></script>
+</body>
+</html>

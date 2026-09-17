@@ -1,0 +1,6 @@
+{
+  "name": "ClaimIt",
+  "description": "Know what you deserve. Claim what you're eligible for. Personalized government benefits and opportunities discovery platform with Telugu identity (నా హక్కు - Naa Hakku).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

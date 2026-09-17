@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CLAIMIT | నా హక్కు - Know What You Deserve, Claim What You're Eligible For</title>
+  <meta name="description" content="Personalized government benefits, scholarships, subsidies and welfare schemes discovery platform with rule-based eligibility engine and Telugu language support.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-badge">C</div>
+        <div class="logo-text">
+          <h1 data-i18n="brand_name">CLAIMIT</h1>
+          <span class="identity-telugu" data-i18n="brand_telugu_identity">నా హక్కు (Naa Hakku)</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="active" data-i18n="nav_home">Home</a></li>
+          <li><a href="profile.html" data-i18n="nav_find_benefits">Find Benefits</a></li>
+          <li><a href="schemes.html" data-i18n="nav_schemes">Schemes</a></li>
+          <li><a href="dashboard.html" data-i18n="nav_dashboard">Dashboard</a></li>
+          <li><a href="applications.html" data-i18n="nav_applications">My Applications</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Language Switcher -->
+        <div class="lang-toggle" role="group" aria-label="Language selection">
+          <button class="lang-btn active" data-lang="en">English</button>
+          <button class="lang-btn" data-lang="te">తెలుగు</button>
+        </div>
+        <button class="btn btn-demo btn-sm" data-action="try-demo" data-i18n="btn_try_demo">⚡ Try Demo</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <h1 data-i18n="hero_title">Don't Search for Benefits.<br>Discover What You Can Claim.</h1>
+        <p class="subtitle" data-i18n="hero_subtitle">
+          ClaimIt helps you discover scholarships, subsidies, welfare schemes and opportunities you may be eligible for — and guides you step-by-step through the application process.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="profile.html" class="btn btn-primary btn-lg" data-i18n="btn_find_benefits">Find My Benefits</a>
+          <button class="btn btn-demo btn-lg" data-action="try-demo" data-i18n="btn_try_demo">⚡ Try Demo</button>
+          <a href="schemes.html" class="btn btn-secondary btn-lg" data-i18n="btn_explore_schemes">Explore Schemes</a>
+        </div>
+
+        <div class="hero-hint">
+          <span style="color:#10b981; font-weight:bold;">✓</span>
+          <span data-i18n="hero_hint">No complicated searching. Just tell us about yourself.</span>
+        </div>
+      </div>
+
+      <!-- Live Personalized Engine Preview Card -->
+      <div class="hero-preview">
+        <div class="preview-card">
+          <div class="preview-badge-top" data-i18n="preview_badge">Personalized Discovery Engine</div>
+          
+          <div class="preview-metric-row">
+            <div class="metric-item">
+              <div class="metric-label">Potential Match</div>
+              <div class="metric-value highlight">92%</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-label">Schemes Found</div>
+              <div class="metric-value">8 Active</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-label">Est. Benefits</div>
+              <div class="metric-value">₹75,000+</div>
+            </div>
+          </div>
+
+          <div class="sample-match-box">
+            <div class="match-box-header">
+              <div class="scheme-icon-title">
+                <div class="scheme-icon-pill">🎓</div>
+                <div>
+                  <h4 style="font-size:15px; font-weight:700; color:#1e293b;">Telangana Post-Matric (ePASS)</h4>
+                  <p style="font-size:12px; color:#64748b;">Higher Education • Tuition Reimbursement</p>
+                </div>
+              </div>
+              <span class="match-score-badge">92% Match</span>
+            </div>
+            <p style="font-size:13px; color:#475569; margin:8px 0;">
+              ✓ Age & Domicile Matched &nbsp;•&nbsp; ✓ Income &lt; ₹3L &nbsp;•&nbsp; ✓ B.Tech Enrollment
+            </p>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px;">
+              <span style="font-size:12px; color:#047857; font-weight:700;">Up to ₹75,000 / year</span>
+              <a href="scheme-details.html?id=1" class="btn btn-outline btn-sm">View Match &rarr;</a>
+            </div>
+          </div>
+
+          <div class="disclaimer-note" data-i18n="preview_disclaimer">
+            Potential benefits identified based on your profile criteria.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem & Solution Section -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Public Welfare Dilemma</span>
+        <h2>Bridging the Gap Between Citizens & Public Schemes</h2>
+        <p>Tens of thousands of crores in public assistance remain unclaimed every year simply because the right citizens never know they qualify.</p>
+      </div>
+
+      <div class="prob-sol-grid">
+        <!-- Problem Card -->
+        <div class="card problem-card">
+          <div class="card-title-row">
+            <span style="font-size:24px;">❌</span>
+            <h3 data-i18n="problem_title" style="color:var(--accent-rose);">THE PROBLEM</h3>
+          </div>
+          <p style="font-size:14px; color:#64748b; margin-bottom:16px;" data-i18n="problem_sub">
+            People often miss out on crucial public benefits because:
+          </p>
+          <ul class="bullet-list">
+            <li><span class="bullet-icon red">✗</span> <span data-i18n="prob_1">They don't know which schemes exist across departments</span></li>
+            <li><span class="bullet-icon red">✗</span> <span data-i18n="prob_2">Eligibility guidelines are confusing and dense</span></li>
+            <li><span class="bullet-icon red">✗</span> <span data-i18n="prob_3">Information is scattered across hundreds of portals</span></li>
+            <li><span class="bullet-icon red">✗</span> <span data-i18n="prob_4">Application procedures are difficult to navigate</span></li>
+            <li><span class="bullet-icon red">✗</span> <span data-i18n="prob_5">Required documents and formats are unclear</span></li>
+            <li><span class="bullet-icon red">✗</span> <span data-i18n="prob_6">Important government deadlines are quietly missed</span></li>
+          </ul>
+        </div>
+
+        <!-- Solution Card -->
+        <div class="card solution-card">
+          <div class="card-title-row">
+            <span style="font-size:24px;">✅</span>
+            <h3 data-i18n="solution_title" style="color:var(--accent-emerald);">THE SOLUTION</h3>
+          </div>
+          <p style="font-size:14px; color:#64748b; margin-bottom:16px;" data-i18n="solution_sub">
+            ClaimIt transforms welfare discovery with automated guidance:
+          </p>
+          <ul class="bullet-list">
+            <li><span class="bullet-icon green">✓</span> <span data-i18n="sol_1">Personalized discovery based on your profile</span></li>
+            <li><span class="bullet-icon green">✓</span> <span data-i18n="sol_2">Rule-based multi-criteria eligibility matching</span></li>
+            <li><span class="bullet-icon green">✓</span> <span data-i18n="sol_3">Simple, transparent 'Why you qualify' explanations</span></li>
+            <li><span class="bullet-icon green">✓</span> <span data-i18n="sol_4">Interactive document readiness checklist</span></li>
+            <li><span class="bullet-icon green">✓</span> <span data-i18n="sol_5">Step-by-step application guidance roadmap</span></li>
+            <li><span class="bullet-icon green">✓</span> <span data-i18n="sol_6">Direct official application links & status tracking</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="section" style="background-color: #ffffff; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" data-i18n="how_title">How It Works</span>
+        <h2>Four Simple Steps to Claim Your Rights</h2>
+        <p data-i18n="how_sub">Four simple steps to discover and claim your government entitlements</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h4 data-i18n="step_1_title">1. Tell Us About Yourself</h4>
+          <p data-i18n="step_1_desc">Share basic details like occupation, education, state, and family income safely.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h4 data-i18n="step_2_title">2. Find Matching Benefits</h4>
+          <p data-i18n="step_2_desc">Our rule engine scans verified schemes across education, agriculture, and welfare.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h4 data-i18n="step_3_title">3. Check Your Eligibility</h4>
+          <p data-i18n="step_3_desc">Review your transparent match score and see exactly which conditions you satisfy.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <h4 data-i18n="step_4_title">4. Claim with Guided Steps</h4>
+          <p data-i18n="step_4_desc">Prepare documents with our readiness tracker and apply directly on official portals.</p>
+        </div>
+      </div>
+
+      <div style="text-align:center; margin-top:40px;">
+        <a href="profile.html" class="btn btn-primary btn-lg" data-i18n="btn_find_benefits">Find My Benefits Now &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scheme Categories Preview -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Sectors & Opportunities</span>
+        <h2>Government Welfare Across Every Domain</h2>
+        <p>From central scholarships and student stipends to farmer input subsidies and women entrepreneurship grants.</p>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:20px;">
+        <div class="card" style="text-align:center;">
+          <div style="font-size:36px; margin-bottom:12px;">🎓</div>
+          <h4 style="font-size:17px; font-weight:700; margin-bottom:6px;">Education & Students</h4>
+          <p style="font-size:13px; color:var(--text-dim);">Post-matric fee reimbursements, merit scholarships, laptop grants.</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:36px; margin-bottom:12px;">🌾</div>
+          <h4 style="font-size:17px; font-weight:700; margin-bottom:6px;">Agriculture & Farmers</h4>
+          <p style="font-size:13px; color:var(--text-dim);">Input subsidies, crop insurance, solar pump grants, PM-KISAN support.</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:36px; margin-bottom:12px;">👩‍💼</div>
+          <h4 style="font-size:17px; font-weight:700; margin-bottom:6px;">Women & Livelihood</h4>
+          <p style="font-size:13px; color:var(--text-dim);">Self-help group low-interest loans, maternity benefits, skill awards.</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:36px; margin-bottom:12px;">💼</div>
+          <h4 style="font-size:17px; font-weight:700; margin-bottom:6px;">Skill & Enterprise</h4>
+          <p style="font-size:13px; color:var(--text-dim);">PMEGP margin subsidies, free technical skilling stipends, Mudra loans.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+            <span style="font-weight:800; font-size:18px; color:var(--primary-900);">CLAIMIT</span>
+            <span style="font-weight:700; color:var(--primary-600); font-size:14px;">నా హక్కు (Naa Hakku)</span>
+          </div>
+          <p style="font-size:13px; color:var(--text-dim); max-width:480px;">
+            A hackathon initiative dedicated to democratizing access to public benefits, scholarships, and opportunities for every citizen in India.
+          </p>
+        </div>
+        <div style="display:flex; gap:20px; font-size:14px;">
+          <a href="schemes.html" data-i18n="nav_schemes">Schemes</a>
+          <a href="profile.html" data-i18n="nav_find_benefits">Find Benefits</a>
+          <a href="dashboard.html" data-i18n="nav_dashboard">Dashboard</a>
+          <a href="applications.html" data-i18n="nav_applications">My Applications</a>
+        </div>
+      </div>
+      <div class="footer-copy">
+        ⚠️ <strong>Notice</strong>: This is a hackathon prototype showcasing rule-based discovery with verified government schemes. Official applications must be completed on respective government portals.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/translations.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/ai-assistant.js"></script>
+</body>
+</html>

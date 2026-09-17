@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find My Benefits | CLAIMIT (నా హక్కు)</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-badge">C</div>
+        <div class="logo-text">
+          <h1 data-i18n="brand_name">CLAIMIT</h1>
+          <span class="identity-telugu" data-i18n="brand_telugu_identity">నా హక్కు (Naa Hakku)</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+          <li><a href="profile.html" class="active" data-i18n="nav_find_benefits">Find Benefits</a></li>
+          <li><a href="schemes.html" data-i18n="nav_schemes">Schemes</a></li>
+          <li><a href="dashboard.html" data-i18n="nav_dashboard">Dashboard</a></li>
+          <li><a href="applications.html" data-i18n="nav_applications">My Applications</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="lang-toggle">
+          <button class="lang-btn active" data-lang="en">English</button>
+          <button class="lang-btn" data-lang="te">తెలుగు</button>
+        </div>
+        <button class="btn btn-demo btn-sm" id="btn-fill-demo">⚡ Fill Demo Profile</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Step 1 of 2</span>
+        <h2>Tell Us About Yourself</h2>
+        <p>Your details are evaluated directly against official scheme criteria to calculate personalized match percentages.</p>
+      </div>
+
+      <div class="form-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px; padding-bottom:16px; border-bottom:1px solid var(--border-color);">
+          <div>
+            <h3 style="font-size:18px; font-weight:700;">Beneficiary Eligibility Profile</h3>
+            <p style="font-size:13px; color:var(--text-dim);">Fields marked with * directly impact eligibility scoring</p>
+          </div>
+          <button type="button" class="btn btn-demo btn-sm" id="btn-quick-demo">⚡ Quick Demo</button>
+        </div>
+
+        <form id="profile-form">
+          <div class="form-grid">
+            <!-- Full Name -->
+            <div class="form-group">
+              <label class="form-label">Full Name *</label>
+              <input type="text" id="fullName" class="form-control" placeholder="e.g. Rahul Sharma" required>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+              <label class="form-label">Email Address *</label>
+              <input type="email" id="email" class="form-control" placeholder="e.g. rahul@example.com" required>
+            </div>
+
+            <!-- Age -->
+            <div class="form-group">
+              <label class="form-label">Age (Years) *</label>
+              <input type="number" id="age" class="form-control" min="10" max="100" placeholder="e.g. 20" required>
+            </div>
+
+            <!-- Gender -->
+            <div class="form-group">
+              <label class="form-label">Gender *</label>
+              <select id="gender" class="form-control" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Transgender">Transgender</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <!-- State -->
+            <div class="form-group">
+              <label class="form-label">State of Residence *</label>
+              <select id="state" class="form-control" required>
+                <option value="Telangana">Telangana</option>
+                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Other">Other State</option>
+              </select>
+            </div>
+
+            <!-- District -->
+            <div class="form-group">
+              <label class="form-label">District *</label>
+              <input type="text" id="district" class="form-control" placeholder="e.g. Hyderabad / Warangal" required>
+            </div>
+
+            <!-- Occupation -->
+            <div class="form-group">
+              <label class="form-label">Occupation / Primary Activity *</label>
+              <select id="occupation" class="form-control" required>
+                <option value="Student">Student</option>
+                <option value="Farmer">Farmer / Cultivator</option>
+                <option value="Job Seeker">Job Seeker / Unemployed Youth</option>
+                <option value="Entrepreneur">Self-Employed / Small Business</option>
+                <option value="Employee">Private / Contract Employee</option>
+                <option value="Other">Other Citizen</option>
+              </select>
+            </div>
+
+            <!-- Education Level -->
+            <div class="form-group">
+              <label class="form-label">Education Level *</label>
+              <select id="educationLevel" class="form-control" required>
+                <option value="Undergraduate">Undergraduate (B.Tech, B.Sc, B.Com, B.A)</option>
+                <option value="Postgraduate">Postgraduate (M.Tech, MBA, M.Sc, M.A)</option>
+                <option value="Diploma">Polytechnic / Technical Diploma</option>
+                <option value="Class 12">Class 12 / Intermediate</option>
+                <option value="Class 10">Class 10 / SSC</option>
+                <option value="Below 10th">Below 10th Standard</option>
+              </select>
+            </div>
+
+            <!-- Annual Income -->
+            <div class="form-group">
+              <label class="form-label">Annual Family Income (₹) *</label>
+              <input type="number" id="annualIncome" class="form-control" min="0" step="10000" placeholder="e.g. 250000" required>
+              <span class="helper-text">Required for welfare & scholarship income ceilings (e.g. ₹2,50,000)</span>
+            </div>
+
+            <!-- Social Category -->
+            <div class="form-group">
+              <label class="form-label">Social Category / Reservation *</label>
+              <select id="category" class="form-control" required>
+                <option value="OBC">OBC (Other Backward Classes)</option>
+                <option value="SC">SC (Scheduled Caste)</option>
+                <option value="ST">ST (Scheduled Tribe)</option>
+                <option value="EWS">EWS (Economically Weaker Section)</option>
+                <option value="General">General / Open Category</option>
+                <option value="Minority">Minority Community</option>
+              </select>
+            </div>
+
+            <!-- Student-Specific Section (Dynamic) -->
+            <div id="student-fields" class="form-group full" style="background:var(--surface-subtle); padding:16px; border-radius:var(--radius-sm); border:1px solid var(--border-color); display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+              <div class="form-group full">
+                <strong style="font-size:14px; color:var(--primary-800);">Academic & Institution Details</strong>
+              </div>
+              <div class="form-group">
+                <label class="form-label">College / University Name</label>
+                <input type="text" id="institutionName" class="form-control" placeholder="e.g. Osmania University College of Engg">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Course / Degree</label>
+                <input type="text" id="course" class="form-control" placeholder="e.g. B.Tech Computer Science">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Year of Study</label>
+                <input type="number" id="studyYear" class="form-control" min="1" max="5" placeholder="e.g. 3">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Latest CGPA / Percentage</label>
+                <input type="number" id="cgpa" class="form-control" min="0" max="10" step="0.01" placeholder="e.g. 8.20">
+              </div>
+            </div>
+
+            <!-- Disability & Special Status -->
+            <div class="form-group full">
+              <label style="display:flex; align-items:center; gap:10px; cursor:pointer;">
+                <input type="checkbox" id="hasDisability" style="width:18px; height:18px;">
+                <span style="font-size:14px;">Person with Benchmark Disability (PwD) - 40% or above</span>
+              </label>
+            </div>
+          </div>
+
+          <div style="margin-top:32px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+            <a href="index.html" class="btn btn-secondary">&larr; Back to Home</a>
+            <button type="submit" class="btn btn-primary btn-lg" id="btn-submit-eval">
+              Evaluate My Eligibility & Find Benefits &rarr;
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container text-center">
+      <div class="footer-copy">
+        CLAIMIT (నా హక్కు) - Rule-Based Government Benefits Discovery Platform.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/translations.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/profile.js"></script>
+  <script src="js/ai-assistant.js"></script>
+</body>
+</html>
