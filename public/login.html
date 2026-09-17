@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Citizen Sign In | CLAIMIT (నా హక్కు)</title>
+  <meta name="description" content="Sign in to CLAIMIT to access personalized government benefit discoveries, document readiness checklists, and application tracking.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .auth-container {
+      min-height: calc(100vh - 180px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 16px;
+      background: radial-gradient(circle at top right, #eff6ff 0%, #f8fafc 60%, #f1f5f9 100%);
+    }
+    .auth-card {
+      width: 100%;
+      max-width: 520px;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      padding: 36px 32px;
+    }
+    .auth-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .auth-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: var(--primary-700);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+    }
+    .auth-tabs {
+      display: flex;
+      gap: 6px;
+      background: #f1f5f9;
+      padding: 4px;
+      border-radius: var(--radius-md);
+      margin-bottom: 24px;
+    }
+    .auth-tab-btn {
+      flex: 1;
+      padding: 8px 12px;
+      border: none;
+      background: transparent;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap;
+      text-align: center;
+    }
+    .auth-tab-btn.active {
+      background: #ffffff;
+      color: var(--primary-700);
+      box-shadow: var(--shadow-sm);
+    }
+    .otp-input-group {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin: 16px 0;
+    }
+    .otp-box {
+      width: 48px;
+      height: 52px;
+      text-align: center;
+      font-size: 22px;
+      font-weight: 700;
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      background: #f8fafc;
+      color: var(--text-main);
+    }
+    .otp-box:focus {
+      outline: none;
+      border-color: var(--primary-600);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+    .persona-card {
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #ffffff;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .persona-card:hover {
+      border-color: var(--primary-500);
+      background: #eff6ff;
+      transform: translateY(-1px);
+    }
+    .persona-icon-name {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .persona-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #dbeafe;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-badge">C</div>
+        <div class="logo-text">
+          <h1 data-i18n="brand_name">CLAIMIT</h1>
+          <span class="identity-telugu" data-i18n="brand_telugu_identity">నా హక్కు (Naa Hakku)</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+          <li><a href="profile.html" data-i18n="nav_find_benefits">Find Benefits</a></li>
+          <li><a href="schemes.html" data-i18n="nav_schemes">Schemes</a></li>
+          <li><a href="dashboard.html" data-i18n="nav_dashboard">Dashboard</a></li>
+          <li><a href="applications.html" data-i18n="nav_applications">My Applications</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Language Switcher -->
+        <div class="lang-toggle" role="group" aria-label="Language selection">
+          <button class="lang-btn active" data-lang="en">English</button>
+          <button class="lang-btn" data-lang="te">తెలుగు</button>
+        </div>
+        <button class="btn btn-demo btn-sm" data-action="try-demo" data-i18n="btn_try_demo">⚡ Try Demo</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Auth Section -->
+  <main class="auth-container">
+    <div class="auth-card">
+      <div class="auth-header">
+        <div class="auth-badge">
+          <span>🇮🇳</span>
+          <span>Digital India • Citizen Authentication</span>
+        </div>
+        <h2 id="authTitle" style="font-size:24px; font-weight:800; color:var(--text-main); margin-bottom:6px;">Citizen Sign In</h2>
+        <p id="authSubtitle" style="font-size:13px; color:var(--text-dim);">
+          Sign in to view your matched schemes, eligibility scores, and track submitted applications.
+        </p>
+      </div>
+
+      <!-- Auth Mode Tabs -->
+      <div class="auth-tabs" role="tablist">
+        <button class="auth-tab-btn active" data-tab="otp" role="tab">📱 Mobile / Aadhaar</button>
+        <button class="auth-tab-btn" data-tab="password" role="tab">✉️ Password</button>
+        <button class="auth-tab-btn" data-tab="demo" role="tab">⚡ 1-Click Demo</button>
+        <button class="auth-tab-btn" data-tab="register" role="tab">📝 Register</button>
+      </div>
+
+      <!-- TAB 1: Mobile / Aadhaar OTP Sign-in -->
+      <div id="tabContentOtp" class="auth-tab-content">
+        <form id="otpStep1Form">
+          <div class="form-group" style="margin-bottom:16px;">
+            <label class="form-label" style="display:flex; justify-content:space-between;">
+              <span>Aadhaar (12 digits) or Mobile (10 digits)</span>
+              <span style="font-size:11px; color:#10b981; font-weight:600;">🔒 Masked & Verified</span>
+            </label>
+            <input type="text" id="otpIdentifierInput" class="form-control" placeholder="e.g. 9876543210 or 1234 5678 9012" value="9876543210" required>
+            <span style="font-size:11px; color:var(--text-dim); margin-top:4px; display:block;">
+              A 6-digit verification code will be simulated for instant testing.
+            </span>
+          </div>
+
+          <button type="submit" id="btnSendOtp" class="btn btn-primary" style="width:100%; justify-content:center; padding:12px;">
+            Get Verification OTP &rarr;
+          </button>
+        </form>
+
+        <form id="otpStep2Form" style="display:none; margin-top:16px;">
+          <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:var(--radius-sm); padding:10px 12px; margin-bottom:16px; font-size:12px; color:#166534;">
+            ✓ OTP sent to <strong id="sentTargetDisplay">+91 98765 43210</strong>. Enter demo code <strong>123456</strong> below.
+          </div>
+
+          <label class="form-label" style="text-align:center; display:block; margin-bottom:6px;">Enter 6-Digit OTP</label>
+          <div class="otp-input-group">
+            <input type="text" maxlength="1" class="otp-box" value="1" autofocus>
+            <input type="text" maxlength="1" class="otp-box" value="2">
+            <input type="text" maxlength="1" class="otp-box" value="3">
+            <input type="text" maxlength="1" class="otp-box" value="4">
+            <input type="text" maxlength="1" class="otp-box" value="5">
+            <input type="text" maxlength="1" class="otp-box" value="6">
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; font-size:12px;">
+            <span style="color:var(--text-dim);">Valid for: <strong id="otpTimer">04:59</strong></span>
+            <button type="button" id="btnAutoFillOtp" class="btn btn-outline btn-sm" style="font-size:11px; padding:2px 8px;">Auto-fill 123456</button>
+          </div>
+
+          <button type="submit" id="btnVerifyOtp" class="btn btn-primary" style="width:100%; justify-content:center; padding:12px;">
+            Verify & Sign In
+          </button>
+          <button type="button" id="btnBackToStep1" class="btn btn-outline" style="width:100%; justify-content:center; padding:8px; margin-top:8px; font-size:12px;">
+            &larr; Change Mobile / Aadhaar
+          </button>
+        </form>
+      </div>
+
+      <!-- TAB 2: Email & Password Sign-in -->
+      <div id="tabContentPassword" class="auth-tab-content" style="display:none;">
+        <form id="passwordLoginForm">
+          <div class="form-group" style="margin-bottom:14px;">
+            <label class="form-label">Email or Mobile Number</label>
+            <input type="text" id="loginEmailInput" class="form-control" placeholder="name@example.com or mobile" value="ramesh.kumar@claimit.org" required>
+          </div>
+
+          <div class="form-group" style="margin-bottom:16px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+              <label class="form-label" style="margin-bottom:0;">Password</label>
+              <a href="#" id="linkForgotPwd" style="font-size:12px; color:var(--primary-600); text-decoration:none;">Forgot password?</a>
+            </div>
+            <input type="password" id="loginPasswordInput" class="form-control" placeholder="••••••••" value="password123" required>
+          </div>
+
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:20px;">
+            <input type="checkbox" id="rememberMeCheckbox" checked>
+            <label for="rememberMeCheckbox" style="font-size:13px; color:var(--text-muted); cursor:pointer;">Keep me signed in on this device</label>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; padding:12px;">
+            Sign In with Password &rarr;
+          </button>
+        </form>
+      </div>
+
+      <!-- TAB 3: 1-Click Demo Personas -->
+      <div id="tabContentDemo" class="auth-tab-content" style="display:none;">
+        <p style="font-size:13px; color:var(--text-dim); margin-bottom:14px;">
+          Choose any test citizen persona below to instantly experience ClaimIt's personalized discovery engine with pre-configured demographic profiles:
+        </p>
+
+        <!-- Persona 1: Student -->
+        <div class="persona-card" data-persona="student">
+          <div class="persona-icon-name">
+            <div class="persona-avatar">🎓</div>
+            <div>
+              <div style="font-size:14px; font-weight:700; color:var(--text-main);">Ramesh Kumar (Student)</div>
+              <div style="font-size:12px; color:var(--text-dim);">Telangana • OBC • B.Tech 3rd Yr • ₹2.5L Income</div>
+            </div>
+          </div>
+          <span class="badge" style="background:#eff6ff; color:#1d4ed8; font-size:11px; font-weight:700;">8 Matches</span>
+        </div>
+
+        <!-- Persona 2: Farmer -->
+        <div class="persona-card" data-persona="farmer">
+          <div class="persona-icon-name">
+            <div class="persona-avatar">🌾</div>
+            <div>
+              <div style="font-size:14px; font-weight:700; color:var(--text-main);">Venkat Rao (Farmer)</div>
+              <div style="font-size:12px; color:var(--text-dim);">Andhra Pradesh • 3.5 Acres • ₹1.8L Income</div>
+            </div>
+          </div>
+          <span class="badge" style="background:#ecfdf5; color:#047857; font-size:11px; font-weight:700;">5 Matches</span>
+        </div>
+
+        <!-- Persona 3: Entrepreneur -->
+        <div class="persona-card" data-persona="entrepreneur">
+          <div class="persona-icon-name">
+            <div class="persona-avatar">👩‍💼</div>
+            <div>
+              <div style="font-size:14px; font-weight:700; color:var(--text-main);">Sunitha Devi (Artisan & SHG)</div>
+              <div style="font-size:12px; color:var(--text-dim);">Telangana • SC • Micro-Enterprise • ₹2.2L Income</div>
+            </div>
+          </div>
+          <span class="badge" style="background:#fdf2f8; color:#be185d; font-size:11px; font-weight:700;">6 Matches</span>
+        </div>
+
+        <!-- Persona 4: Senior Citizen -->
+        <div class="persona-card" data-persona="senior">
+          <div class="persona-icon-name">
+            <div class="persona-avatar">👵</div>
+            <div>
+              <div style="font-size:14px; font-weight:700; color:var(--text-main);">Kameswari Amma (Senior Citizen)</div>
+              <div style="font-size:12px; color:var(--text-dim);">Telangana • Age 68 • Widow Pension • ₹90k Income</div>
+            </div>
+          </div>
+          <span class="badge" style="background:#fffbeb; color:#b45309; font-size:11px; font-weight:700;">4 Matches</span>
+        </div>
+      </div>
+
+      <!-- TAB 4: Register New Citizen Profile -->
+      <div id="tabContentRegister" class="auth-tab-content" style="display:none;">
+        <form id="registerForm">
+          <div class="form-group" style="margin-bottom:12px;">
+            <label class="form-label">Full Name (as per Aadhaar)</label>
+            <input type="text" id="regNameInput" class="form-control" placeholder="e.g. Suresh Varma" required>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px;">
+            <div class="form-group">
+              <label class="form-label">Mobile Number</label>
+              <input type="tel" id="regPhoneInput" class="form-control" placeholder="98765 00000" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email Address</label>
+              <input type="email" id="regEmailInput" class="form-control" placeholder="citizen@example.com" required>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px;">
+            <div class="form-group">
+              <label class="form-label">State of Residence</label>
+              <select id="regStateInput" class="form-control">
+                <option value="Telangana">Telangana</option>
+                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="Other">Other State</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Occupation</label>
+              <select id="regOccupationInput" class="form-control">
+                <option value="Student">Student</option>
+                <option value="Farmer">Farmer</option>
+                <option value="Self-Employed">Self-Employed / Artisan</option>
+                <option value="Unemployed">Job Seeker / Unemployed</option>
+                <option value="Daily Wage Worker">Daily Wage Worker</option>
+                <option value="Senior Citizen">Senior Citizen</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom:18px;">
+            <label class="form-label">Annual Family Income (₹)</label>
+            <select id="regIncomeInput" class="form-control">
+              <option value="150000">Below ₹1.5 Lakhs (BPL / White Card)</option>
+              <option value="250000" selected>₹1.5 Lakhs - ₹3.0 Lakhs</option>
+              <option value="500000">₹3.0 Lakhs - ₹6.0 Lakhs</option>
+              <option value="800000">₹6.0 Lakhs - ₹8.0 Lakhs</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; padding:12px;">
+            Create Citizen Profile & Discover Benefits &rarr;
+          </button>
+        </form>
+      </div>
+
+      <!-- Trust Footer Inside Card -->
+      <div style="border-top:1px solid var(--border-color); margin-top:24px; padding-top:16px; display:flex; align-items:center; justify-content:space-between; font-size:12px; color:var(--text-dim);">
+        <div style="display:flex; align-items:center; gap:6px;">
+          <span>🛡️</span>
+          <span>Encrypted Citizen Privacy</span>
+        </div>
+        <div>
+          <span>Bilingual / నా హక్కు</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+            <span style="font-weight:800; font-size:18px; color:var(--primary-900);">CLAIMIT</span>
+            <span style="font-weight:700; color:var(--primary-600); font-size:14px;">నా హక్కు (Naa Hakku)</span>
+          </div>
+          <p style="font-size:13px; color:var(--text-dim); max-width:480px;">
+            A hackathon initiative dedicated to democratizing access to public benefits, scholarships, and opportunities for every citizen in India.
+          </p>
+        </div>
+        <div style="display:flex; gap:20px; font-size:14px;">
+          <a href="schemes.html" data-i18n="nav_schemes">Schemes</a>
+          <a href="profile.html" data-i18n="nav_find_benefits">Find Benefits</a>
+          <a href="dashboard.html" data-i18n="nav_dashboard">Dashboard</a>
+          <a href="applications.html" data-i18n="nav_applications">My Applications</a>
+        </div>
+      </div>
+      <div class="footer-copy">
+        ⚠️ <strong>Notice</strong>: This is a prototype showcasing rule-based discovery with verified government schemes. Official applications must be completed on respective government portals.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/translations.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/login.js"></script>
+  <script src="js/ai-assistant.js"></script>
+</body>
+</html>

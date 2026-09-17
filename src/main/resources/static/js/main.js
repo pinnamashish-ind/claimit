@@ -153,6 +153,152 @@ const ClaimItApi = {
 
   setCurrentUser(user) {
     localStorage.setItem("claimit_user", JSON.stringify(user));
+    this.renderAuthNav();
+  },
+
+  async login(payload) {
+    try {
+      const res = await fetch(`${API_BASE}/auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      if (data.success && data.user) {
+        this.setCurrentUser(data.user);
+        if (data.token) localStorage.setItem("claimit_token", data.token);
+      }
+      return data;
+    } catch (err) {
+      console.warn("Using offline auth login:", err);
+      const user = { ...this.demoProfile, fullName: payload.identifier || "Citizen" };
+      this.setCurrentUser(user);
+      return { success: true, user, token: "claimit-local-token" };
+    }
+  },
+
+  async register(payload) {
+    try {
+      const res = await fetch(`${API_BASE}/auth/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      if (data.success && data.user) {
+        this.setCurrentUser(data.user);
+        if (data.token) localStorage.setItem("claimit_token", data.token);
+      }
+      return data;
+    } catch (err) {
+      console.warn("Using offline registration:", err);
+      const user = { ...this.demoProfile, fullName: payload.fullName || "Citizen", email: payload.email };
+      this.setCurrentUser(user);
+      return { success: true, user, token: "claimit-local-token" };
+    }
+  },
+
+  async sendOtp(identifier) {
+    try {
+      const res = await fetch(`${API_BASE}/auth/otp/send`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ identifier })
+      });
+      return await res.json();
+    } catch (err) {
+      return { success: true, message: "A 6-digit OTP has been sent. Use test code 123456.", demoOtp: "123456" };
+    }
+  },
+
+  async verifyOtp(identifier, otp) {
+    try {
+      const res = await fetch(`${API_BASE}/auth/otp/verify`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ identifier, otp })
+      });
+      const data = await res.json();
+      if (data.success && data.user) {
+        this.setCurrentUser(data.user);
+        if (data.token) localStorage.setItem("claimit_token", data.token);
+      }
+      return data;
+    } catch (err) {
+      if (otp === "123456") {
+        const user = this.demoProfile;
+        this.setCurrentUser(user);
+        return { success: true, user, token: "claimit-local-token" };
+      }
+      return { success: false, message: "Invalid OTP. Use test code 123456." };
+    }
+  },
+
+  async loginDemoPersona(personaKey) {
+    try {
+      const res = await fetch(`${API_BASE}/auth/demo-login?persona=${encodeURIComponent(personaKey)}`, {
+        method: "POST"
+      });
+      const data = await res.json();
+      if (data.success && data.user) {
+        this.setCurrentUser(data.user);
+        if (data.token) localStorage.setItem("claimit_token", data.token);
+      }
+      return data;
+    } catch (err) {
+      const user = { ...this.demoProfile, role: personaKey };
+      this.setCurrentUser(user);
+      return { success: true, user };
+    }
+  },
+
+  logout() {
+    localStorage.removeItem("claimit_user");
+    localStorage.removeItem("claimit_token");
+    window.location.href = "login.html";
+  },
+
+  renderAuthNav() {
+    const navActions = document.querySelector(".nav-actions");
+    if (!navActions) return;
+
+    let authContainer = navActions.querySelector(".nav-auth-container");
+    if (!authContainer) {
+      authContainer = document.createElement("div");
+      authContainer.className = "nav-auth-container";
+      navActions.appendChild(authContainer);
+    }
+
+    const user = this.getCurrentUser();
+    const isTe = localStorage.getItem("claimit_lang") === "te";
+
+    if (user && (user.fullName || user.email)) {
+      const displayName = user.fullName || user.email.split("@")[0];
+      authContainer.innerHTML = `
+        <div class="user-nav-dropdown" style="display:flex; align-items:center; gap:8px;">
+          <a href="dashboard.html" class="user-pill-badge" title="Citizen Account" style="display:flex; align-items:center; gap:6px; background:#eff6ff; border:1px solid #bfdbfe; color:#1d4ed8; padding:5px 12px; border-radius:9999px; text-decoration:none; font-size:13px; font-weight:600;">
+            <span style="font-size:14px;">👤</span>
+            <span style="max-width:110px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${displayName}</span>
+          </a>
+          <button id="navLogoutBtn" class="btn btn-outline btn-sm" title="${isTe ? 'లాగౌట్' : 'Sign Out'}" style="padding:4px 10px; font-size:12px; color:#ef4444; border-color:#fecaca;">
+            ${isTe ? 'లాగౌట్' : 'Sign Out'}
+          </button>
+        </div>
+      `;
+      const logoutBtn = authContainer.querySelector("#navLogoutBtn");
+      if (logoutBtn) {
+        logoutBtn.onclick = (e) => {
+          e.preventDefault();
+          this.logout();
+        };
+      }
+    } else {
+      authContainer.innerHTML = `
+        <a href="login.html" class="btn btn-outline btn-sm" style="font-weight:600; padding:6px 14px; border-color:#cbd5e1; color:var(--text-main); text-decoration:none;">
+          ${isTe ? 'లాగిన్' : 'Sign In'}
+        </a>
+      `;
+    }
   },
 
   getStoredApplications() {
@@ -478,6 +624,14 @@ function activateDemoMode() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Render Auth state in navbar
+  ClaimItApi.renderAuthNav();
+
+  // Re-render auth nav on language change
+  window.addEventListener("claimit_lang_change", () => {
+    ClaimItApi.renderAuthNav();
+  });
+
   // Bind any demo buttons across pages
   document.querySelectorAll(".btn-demo, [data-action='try-demo']").forEach(btn => {
     btn.addEventListener("click", (e) => {

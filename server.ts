@@ -323,6 +323,195 @@ function evaluateProfile(profile: any) {
 }
 
 // REST API Endpoints
+// Authentication Endpoints
+const demoPersonas: Record<string, any> = {
+  student: {
+    id: 1,
+    fullName: "Ramesh Kumar",
+    email: "ramesh.kumar@claimit.org",
+    phone: "+91 98765 43210",
+    role: "Student",
+    isDemo: true,
+    profile: {
+      age: 20,
+      gender: "Male",
+      state: "Telangana",
+      district: "Hyderabad",
+      occupation: "Student",
+      educationLevel: "Undergraduate",
+      annualIncome: 250000,
+      category: "OBC",
+      hasDisability: false,
+      employmentStatus: "Unemployed",
+      institutionName: "Osmania University College of Engineering",
+      course: "B.Tech Computer Science",
+      studyYear: 3,
+      cgpa: 8.20
+    }
+  },
+  farmer: {
+    id: 2,
+    fullName: "Venkat Rao",
+    email: "venkat.rao@claimit.org",
+    phone: "+91 98480 12345",
+    role: "Farmer",
+    isDemo: true,
+    profile: {
+      age: 45,
+      gender: "Male",
+      state: "Andhra Pradesh",
+      district: "Guntur",
+      occupation: "Farmer",
+      educationLevel: "Secondary",
+      annualIncome: 180000,
+      category: "General",
+      hasDisability: false,
+      employmentStatus: "Self-Employed",
+      landHoldingAcres: 3.5
+    }
+  },
+  entrepreneur: {
+    id: 3,
+    fullName: "Sunitha Devi",
+    email: "sunitha.devi@claimit.org",
+    phone: "+91 94401 54321",
+    role: "Artisan / SHG Leader",
+    isDemo: true,
+    profile: {
+      age: 34,
+      gender: "Female",
+      state: "Telangana",
+      district: "Warangal",
+      occupation: "Self-Employed / Artisan",
+      educationLevel: "Higher Secondary",
+      annualIncome: 220000,
+      category: "SC",
+      hasDisability: false,
+      employmentStatus: "Self-Employed",
+      shgMember: true
+    }
+  },
+  senior: {
+    id: 4,
+    fullName: "Kameswari Amma",
+    email: "kameswari.amma@claimit.org",
+    phone: "+91 99890 98765",
+    role: "Senior Citizen",
+    isDemo: true,
+    profile: {
+      age: 68,
+      gender: "Female",
+      state: "Telangana",
+      district: "Karimnagar",
+      occupation: "Senior Citizen / Homemaker",
+      educationLevel: "Primary",
+      annualIncome: 90000,
+      category: "OBC",
+      hasDisability: false,
+      employmentStatus: "Retired"
+    }
+  }
+};
+
+app.post("/api/auth/otp/send", (req, res) => {
+  const identifier = req.body.identifier || "Mobile / Aadhaar";
+  res.json({
+    success: true,
+    message: `A 6-digit verification code has been dispatched. Enter 123456 for instant testing.`,
+    demoOtp: "123456",
+    expiresInSeconds: 300
+  });
+});
+
+app.post("/api/auth/otp/verify", (req, res) => {
+  const { otp, identifier } = req.body;
+  if (otp !== "123456") {
+    return res.status(400).json({ success: false, message: "Invalid OTP. Use test code 123456." });
+  }
+  const user = demoPersonas.student;
+  res.json({
+    success: true,
+    message: "Aadhaar / Mobile verified successfully",
+    token: "claimit-jwt-" + Date.now(),
+    user: user
+  });
+});
+
+app.post("/api/auth/login", (req, res) => {
+  const { identifier, password, authType, demoPersona } = req.body;
+  if (authType === "demo") {
+    const personaKey = (demoPersona || "student").toLowerCase();
+    const user = demoPersonas[personaKey] || demoPersonas.student;
+    return res.json({
+      success: true,
+      message: `Signed in as ${user.fullName}`,
+      token: "claimit-jwt-" + Date.now(),
+      user: user
+    });
+  }
+
+  if (!identifier) {
+    return res.status(400).json({ success: false, message: "Identifier is required." });
+  }
+
+  // Find if matching demo user, else generate citizen profile
+  const user = demoPersonas.student;
+  res.json({
+    success: true,
+    message: "Signed in successfully",
+    token: "claimit-jwt-" + Date.now(),
+    user: {
+      ...user,
+      fullName: identifier.includes("@") ? identifier.split("@")[0] : "Citizen " + identifier.slice(-4),
+      email: identifier.includes("@") ? identifier : identifier + "@claimit.org"
+    }
+  });
+});
+
+app.post("/api/auth/register", (req, res) => {
+  const { fullName, email, phone, state, occupation, annualIncome } = req.body;
+  const newUser = {
+    id: Date.now(),
+    fullName: fullName || "Valued Citizen",
+    email: email || "citizen@claimit.org",
+    phone: phone || "+91 98765 00000",
+    isDemo: false,
+    profile: {
+      age: 24,
+      gender: "Male",
+      state: state || "Telangana",
+      occupation: occupation || "Student",
+      educationLevel: "Undergraduate",
+      annualIncome: Number(annualIncome) || 250000,
+      category: "General",
+      hasDisability: false,
+      employmentStatus: "Employed"
+    }
+  };
+  res.status(201).json({
+    success: true,
+    message: "Registration completed successfully",
+    token: "claimit-jwt-" + Date.now(),
+    user: newUser
+  });
+});
+
+app.post("/api/auth/demo-login", (req, res) => {
+  const personaKey = (req.query.persona || req.body.persona || "student").toString().toLowerCase();
+  const user = demoPersonas[personaKey] || demoPersonas.student;
+  res.json({
+    success: true,
+    message: `Signed in as ${user.fullName}`,
+    token: "claimit-jwt-" + Date.now(),
+    user: user
+  });
+});
+
+app.get("/api/auth/me", (req, res) => {
+  res.json(demoPersonas.student);
+});
+
+// REST API Endpoints
 app.get("/api/schemes", (req, res) => {
   res.json(schemes);
 });
